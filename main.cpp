@@ -38,7 +38,6 @@ double calculateSampleMeanSingle(std::vector<double> sample) {
 
 int main() {
     pcg64 rng(1);
-    pcg64 rng_copy = rng;
     std::vector<double> multipleThreadResult(N);
     task1 t1 = task1(N, K);
     std::vector<std::thread> threadsTask1, threadsTask2, threadsTask3;
