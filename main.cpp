@@ -36,19 +36,6 @@ double calculateSampleMeanSingle(std::vector<double> sample) {
     return result;
 }
 
-void print(std::vector<double> &sample, bool multithrd) {
-    std::string output;
-    if (!multithrd) {
-        output = "1 thread:\n";
-    } else output = std::to_string(K) + " threads:\n";
-    std::cout << output;
-    for (int i = 0; i < N; ++i) {
-        std::cout << sample[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-
 int main() {
     pcg64 rng(1);
     pcg64 rng_copy = rng;
@@ -66,14 +53,12 @@ int main() {
     }
     std::cout << "Generated sample of " << N << " random numbers in " << K << " threads in: "
               << float(clock() - begin_time) << std::endl;
-    //print(multipleThreadResult, true);
     std::vector<double> singleThreadResult(N);
     singleThreadResult.clear();
     begin_time = clock();
     generateSingle(singleThreadResult, rng);
     std::cout << "Generated sample of " << N << " random numbers in the single thread in: "
               << float(clock() - begin_time) << std::endl;
-    //print(singleThreadResult, false);
 
     /** sin calculation **/
     task2 t2 = task2(N, K);
@@ -87,14 +72,11 @@ int main() {
     }
     std::cout << "Calculated sin of " << N << " random numbers in " << K << " threads in: "
               << float(clock() - begin_time) << std::endl;
-    //print(multipleThreadResult, true);
-
+    
     begin_time = clock();
     calculateSinSingle(singleThreadResult);
     std::cout << "Calculated sin of " << N << " random numbers in the single thread in: "
               << float(clock() - begin_time) << std::endl;
-    //print(singleThreadResult, false);
-
 
 
     /** sample mean calculation **/
