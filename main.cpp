@@ -8,7 +8,6 @@
 #include "task3.h"
 
 
-
 const int N = 10000000;
 const int K = 4;
 
@@ -71,7 +70,7 @@ int main() {
     }
     std::cout << "Calculated sin of " << N << " random numbers in " << K << " threads in: "
               << float(clock() - begin_time) << std::endl;
-    
+
     begin_time = clock();
     calculateSinSingle(singleThreadResult);
     std::cout << "Calculated sin of " << N << " random numbers in the single thread in: "
